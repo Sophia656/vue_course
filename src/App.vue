@@ -2,8 +2,10 @@
 <template>
     <div class="app">
         <h1>Страница с постами</h1>
+        <input type="text" v-model.trim="modificatorValue">
         <my-button
         @click="showDialog"
+        style="margin: 15px 0"
         >
             Создать пост
         </my-button>
@@ -38,6 +40,7 @@ export default {
                 {id: 3, title: 'JavaScript 3', body: 'Описание поста 3'}
             ],
             dialogVisible: false,
+            modificatorValue: ''
         }
     },
     methods: {
