@@ -85,7 +85,6 @@ export default {
         },
         changePage(pageNumber) {
             this.page = pageNumber
-            this.fetchPosts()
         },
         async fetchPosts() {
             try {
@@ -117,11 +116,9 @@ export default {
         }
     },
     watch: {
-        // selectedSort(newValue) {
-        //     this.posts.sort((post1, post2) => {
-        //         return post1[newValue]?.localeCompare(post2[this.selectedSort])
-        //     })
-        // },
+        page() {
+            this.fetchPosts()
+        }
     }
 }
 </script>
