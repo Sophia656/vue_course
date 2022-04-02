@@ -37,9 +37,15 @@ export default {
                 title: '',
                 body: ''
             }
-            // this.posts.push(newPost);
-            // this.title = '';
-            // this.body = '';
+        }
+    },
+    watch: {
+        // глубокое отслеживание объекта
+        post: {
+            handler(newVal) {
+                console.log(newVal)
+            },
+            deep: true
         }
     }
 }

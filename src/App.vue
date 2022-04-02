@@ -2,13 +2,17 @@
 <template>
     <div class="app">
         <h1>Страница с постами</h1>
-        <my-button @click="fetchPosts">Получить посты</my-button>
-        <my-button
-        @click="showDialog"
-        style="margin: 15px 0"
-        >
-            Создать пост
-        </my-button>
+        <div class="app__btns">
+            <my-button
+            @click="showDialog"
+            >
+                Создать пост
+            </my-button>
+            <my-select
+            v-model="selectedSort"
+            :options="sortOptions"
+            />
+        </div>
         <my-dialog v-model:show="dialogVisible">
             <post-form
                 @create="createPost"
@@ -39,7 +43,12 @@ export default {
         return {
             posts: [],
             dialogVisible: false,
-            isPostsLoading: false
+            isPostsLoading: false,
+            selectedSort: '',
+            sortOptions: [
+                {value: 'title', name: 'По названию'},
+                {value: 'body', name: 'По описанию'}
+            ]
         }
     },
     methods: {
@@ -68,6 +77,14 @@ export default {
     mounted() {
         this.fetchPosts()    
     },
+    watch: {
+        selectedSort(newValue) {
+            console.log(newValue)
+        },
+        dialogVisible(newValue) {
+            console.log(newValue)
+        }
+    }
 }
 </script>
 // scoped -- доступны только этому компоненту
@@ -79,5 +96,10 @@ export default {
 }
 .app {
     padding: 20px;
+}
+.app__btns {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
 }
 </style>
