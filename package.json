@@ -1,6 +1,7 @@
 {
   "name": "vue_course",
   "version": "0.1.0",
+  "homepage": "https://sophia656.github.io/vue_course/",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

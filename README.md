@@ -1,19 +1,7 @@
 # vue_course
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+***open: ***
+    git clone https://github.com/Sophia656/vue_course.git
+    cd vue_course
+    npm init
+    npm run serve
