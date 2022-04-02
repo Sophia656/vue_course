@@ -16,5 +16,6 @@ export default {
     background: none;
     color: rgb(212, 110, 152);
     border: 1px solid rgb(212, 110, 152);
+    cursor: pointer;
 }
 </style>
