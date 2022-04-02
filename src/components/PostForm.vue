@@ -39,15 +39,6 @@ export default {
             }
         }
     },
-    watch: {
-        // глубокое отслеживание объекта
-        post: {
-            handler(newVal) {
-                console.log(newVal)
-            },
-            deep: true
-        }
-    }
 }
 </script>
 <style scoped>
