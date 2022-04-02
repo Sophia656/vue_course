@@ -1,39 +1,49 @@
-// Разметка
+
 <template>
-    <div>
-        <div>
-             <!-- v - ... -- диррективы  -->
-            <button v-on:click="addLike">Like</button>
-            <button @click="addDislike">Dislike</button>
-        </div>
-        <!-- интерполяция - {{ модель }} -->
-        <div>Кол-во лайков - <strong>{{ likes }}</strong></div>
-        <div>Кол-во дизлайков - <strong>{{ dislikes }}</strong></div>
+    <div class="app">
+        <post-form
+        @create="createPost"
+        />
+        <post-list 
+        :posts="posts"
+        />
     </div>
 </template>
-// Логика
+
 <script>
-// вседа возвращаем компонент
+import PostForm from '@/components/PostForm.vue';
+import PostList from '@/components/PostList.vue';
 export default {
+    components: {
+        PostList, PostForm
+    },
     data() {
         return {
-            // модель
-            likes: 0,
-            dislikes: 0,
+            posts: [
+                {id: 1, title: 'JavaScript', body: 'Описание поста'},
+                {id: 2, title: 'JavaScript 2', body: 'Описание поста 2'},
+                {id: 3, title: 'JavaScript 3', body: 'Описание поста 3'}
+            ],
         }
     },
-    // функции объявляются в поле methods у компонента
     methods: {
-        addLike() {
-            this.likes += 1;
+        createPost(post) {
+            this.posts.push(post)
         },
-        addDislike() {
-            this.dislikes += 1;
-        }
+        // inputTitle(event) {
+        //     this.title = event.target.value
+        // },
     }
 }
 </script>
-
+// scoped -- доступны только этому компоненту
 <style>
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.app {
+    padding: 20px;
+}
 </style>
