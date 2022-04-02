@@ -3,5 +3,5 @@ to launch:
 
     git clone https://github.com/Sophia656/vue_course.git
     cd vue_course
-    npm init
+    npm i
     npm run serve
