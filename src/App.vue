@@ -2,7 +2,7 @@
 <template>
     <div class="app">
         <h1>Страница с постами</h1>
-        <input type="text" v-model.trim="modificatorValue">
+        <my-button @click="fetchPosts">Получить посты</my-button>
         <my-button
         @click="showDialog"
         style="margin: 15px 0"
@@ -17,7 +17,9 @@
         <post-list 
         :posts="posts"
         @remove="removePost"
+        v-if="!isPostsLoading"
         />
+        <div v-else>LOADING...</div>
     </div>
 </template>
 
@@ -26,6 +28,7 @@ import PostForm from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
 import MyDialog from './components/UI/MyDialog.vue';
 import MyButton from './components/UI/MyButton.vue';
+import axios from 'axios';
 export default {
     components: {
         PostList, PostForm,
@@ -34,13 +37,9 @@ export default {
     },
     data() {
         return {
-            posts: [
-                {id: 1, title: 'JavaScript', body: 'Описание поста'},
-                {id: 2, title: 'JavaScript 2', body: 'Описание поста 2'},
-                {id: 3, title: 'JavaScript 3', body: 'Описание поста 3'}
-            ],
+            posts: [],
             dialogVisible: false,
-            modificatorValue: ''
+            isPostsLoading: false
         }
     },
     methods: {
@@ -53,11 +52,22 @@ export default {
         },
         showDialog() {
             this.dialogVisible = true
-        }
-        // inputTitle(event) {
-        //     this.title = event.target.value
-        // },
-    }
+        },
+        async fetchPosts() {
+            try {
+                this.isPostsLoading = true;
+                    const responce = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+                    this.posts = responce.data;
+            } catch (e) {
+                alert('ERROR')
+            } finally {
+                this.isPostsLoading = false;
+            }
+        },
+    },
+    mounted() {
+        this.fetchPosts()    
+    },
 }
 </script>
 // scoped -- доступны только этому компоненту
